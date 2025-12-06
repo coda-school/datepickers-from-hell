@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Stock 📅</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+.btn {
+    display:block;
+    text-align:center;
+    padding: 14px;
+    background: #28a745;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration:none;
+}
+.btn:hover {
+    background:#218838;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+#popup:target {
+    display: flex;
+}
+
+#popup2:target {
+    display: flex;
+}
+
+#popup3:target {
+    display: flex;
+}
+
+#popup3b:target {
+    display: flex;
+}
+
+#popup4:target {
+    display: flex;
+}
+
+#popup4b:target {
+    display: flex;
+}
+
+#popup5:target {
+    display: flex;
+}
+
+#popup5b:target {
+    display: flex;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 30px;
+    width: 80%;
+    max-width: 350px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #dc3545;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.close-btn:hover {
+    background: #c82333;
+}
+
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Gestion de Stock</h1>
+    <form id="date-form">
+        <label for="date">Sélectionner une date :</label>
+        <input type="date" id="date" name="date" required>
+        <a href="#popup" class="btn">Valider la Sélection</a>
+    </form>
+</div>
+
+    <div id="popup" class="popup">
+    <div class="popup-content">
+        <h2>ATTENTION UN HACKER A TRAFIQUÉ LES DATES</h2>
+        <p> Détective ! Les dates du stock ont été trafiquées.
+Votre mission : retrouver la bonne date et déjouer le hacker.
+Où commencez-vous votre enquête ?</p>
+        <a href="#popup2" class="close-btn">Bureau du stock</a>
+        <a href="#popup2" class="close-btn">Calendrier des livraisons</a>
+    </div>
+</div>
+
+    <div id="popup2" class="popup">
+    <div class="popup-content">
+        <h2>Première énigme</h2>
+        <p> Le hacker a laissé un message codé pour la date du prochain événement :
+<mark>E / B / C / D</mark><br>
+Traduisez les lettres en chiffres pour retrouver la bonne date.</p>
+<p>A = 3 / B = 7 / C = 0 / D = 5 / E = 2 / F = 8 / G = 1 / H = 4 / I = 9 / J = 6<br></p>
+        <a href="#popup3" class="close-btn">27/05</a>
+        <a href="#popup3b" class="close-btn">25/07</a>
+    </div>
+</div>
+
+    <div id="popup3" class="popup">
+    <div class="popup-content">
+        <h2>Deuxième énigme</h2>
+        <p> Le hacker a déplacé certains événements au vendredi, mais n’a laissé qu’un indice :<br> “Le prochain événement aura lieu 3 jours après le mardi du 1er décembre 2025."</p>
+        <a href="#popup4" class="close-btn">04/12</a>
+        <a href="#popup4b" class="close-btn">05/12</a>
+    </div>
+</div>
+
+    <div id="popup3b" class="popup">
+    <div class="popup-content">
+        <h2>AHAHA</h2>
+        <p>😈 Oups ! Le hacker se moque de vous…
+Ce n’est pas la bonne date !
+Réfléchissez encore, détective, et essayez un autre indice.</p>
+        <a href="#popup2" class="close-btn">Revenir en arrière...</a>
+    </div>
+</div>
+
+    <div id="popup4b" class="popup">
+    <div class="popup-content">
+        <h2>AHAHA</h2>
+        <p> 😈 Ce n’est pas la bonne date !
+Le hacker adore embrouiller les détectives…
+Revenez sur vos calculs et trouvez le vendredi correct !</p>
+        <a href="#popup3" class="close-btn">Revenir en arrière...</a>
+    </div>
+</div>
+
+    <div id="popup4" class="popup">
+    <div class="popup-content">
+        <h2>énigme finale</h2>
+        <p>Le hacker a laissé un dernier message : <br>
+Le dernier événement est le jour où :<br>
+Le numéro du mois correspond au nombre de lettres du mot "REVEILLONNER"<br>
+Le jour est le triple du nombre de lettres du mot "PÈRE NOËL"<br>
+L’année est "2025”</p>
+        <a href="#popup5" class="close-btn">24/12/25</a>
+        <a href="#popup5b" class="close-btn">25/11/25</a>
+    </div>
+</div>
+
+    <div id="popup5b" class="popup">
+    <div class="popup-content">
+        <h2>AHAHAH</h2>
+        <p>😈 Oups, mauvaise date ! Le hacker se moque de vous… Ce n’est pas la bonne date.</p>
+        <p>Réfléchissez bien et essayez un autre indice !</p>
+        <a href="#popup4" class="close-btn">Revenir en arrière...</a>
+    </div>
+</div>
+
+    <div id="popup5" class="popup">
+    <div class="popup-content">
+        <h2>🎉 Mission réussie !</h2>
+ <p>Félicitations détective ! Vous avez déjoué le hacker et retrouvé la bonne date : <strong>24/12/2025</strong>.</p>
+        <p>Le stock est enfin sécurisé ! Vous pouvez désormais choisir la date que vous souhaitez !</p>
+        <a href="index1.html" class="close-btn">Retour aux dates</a>
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('date-form');
+    const dateInput = document.getElementById('date');
+
+    const today = new Date();
+    const minDate = new Date(today.setDate(today.getDate() + 1));
+    dateInput.min = minDate.toISOString().split('T')[0];
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const selectedDate = dateInput.value;
+        if (!selectedDate) {
+            alert("Tu n'as pas sélectionné de date !");
+        } else {
+            const dateObj = new Date(selectedDate);
+            if (dateObj < minDate) {
+                alert("La date doit être au moins demain !");
+            } else {
+                alert("La date sélectionnée est : " + selectedDate);
+            }
+        }
+    });
+
+    dateInput.addEventListener('change', function () {
+    const selected = new Date(dateInput.value);
+
+    // Exemple : on ajoute 5000 jours
+    const fakeDate = new Date(selected.getTime() + 5000 * 24 * 60 * 60 * 1000);
+
+    // On met la nouvelle date dans l’input
+    dateInput.value = fakeDate.toISOString().split('T')[0];
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Stock (Version No-JS)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 0; 
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 420px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+
+        .fake-banner {
+            background-color: #e74c3c;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        .content {
+            padding: 20px 30px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 20px;
+            color: #333;
+            margin-top: 0;
+        }
+
+        .ad-disguised {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .ad-icon { margin-right: 10px; font-size: 20px; }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            box-sizing: border-box; 
+        }
+
+
+        .sneaky-option {
+            background-color: #fafafa;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .sneaky-row {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .sneaky-row input {
+            margin-top: 4px;
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            accent-color: #27ae60; 
+        }
+
+        .sneaky-label {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .price-tag {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+       
+        .legal-text {
+            font-size: 9px; 
+            color: #bdc3c7;
+            margin-top: 5px;
+            text-align: justify;
+        }
+
+        
+        .btn-trap {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #27ae60;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #219150;
+            margin-bottom: 15px;
+        }
+
+        .btn-trap:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #219150;
+        }
+
+        .hidden-link-container {
+            text-align: center;
+        }
+
+        .btn-honest {
+            font-size: 11px;
+            color: #95a5a6;
+            text-decoration: underline;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-honest:hover {
+            color: #7f8c8d;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="fake-banner">
+        ⚠️ OFFRE LIMITÉE : STOCK BAS !
+    </div>
+
+    <div class="content">
+        <h1>Planifier le Stock</h1>
+
+        <div class="ad-disguised">
+            <span class="ad-icon">💡</span>
+            <span>Conseil : Les utilisateurs Premium sont prioritaires sur les livraisons.</span>
+        </div>
+
+        <form action="#"> <label for="date">Date de livraison :</label>
+            <input type="date" id="date" name="date">
+
+            <div class="sneaky-option">
+                <div class="sneaky-row">
+                    <input type="checkbox" id="insurance" name="insurance" checked>
+                    
+                    <label for="insurance" class="sneaky-label">
+                        <strong>Recommandé :</strong> Garder la protection "Stock Serein" active pour seulement <span class="price-tag">4,99€/mois</span>.
+                        <br><br>
+                        <em>Décochez cette case uniquement si vous ne voulez pas refuser de perdre votre priorité.</em>
+                    </label>
+                </div>
+                
+                <p class="legal-text">
+                    En cliquant sur le bouton vert, vous acceptez les CGV. L'abonnement est tacite et reconductible mensuellement. La résiliation nécessite l'envoi d'un courrier recommandé avec accusé de réception au siège social situé aux Îles Caïmans.
+                </p>
+            </div>
+
+            <button type="submit" class="btn-trap">
+                CONTINUER & SÉCURISER
+            </button>
+
+            <div class="hidden-link-container">
+                <button type="reset" class="btn-honest">
+                    Non merci, je ne tiens pas à mes produits et j'accepte les retards.
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

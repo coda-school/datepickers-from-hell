@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Picker Pro 📅</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #f3f3f7;
+            overflow-x: hidden;
+            transition: padding-left 0.2s ease; /* glissement imperceptible */
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+            width: 350px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: all 0.2s ease;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Sélection de date</h1>
+    <input type="date" id="picker">
+    <button id="validateBtn">Valider</button>
+</div>
+
+<script>
+    const picker = document.getElementById("picker");
+    const btn = document.getElementById("validateBtn");
+
+    /*Scroll infini du calendrier */
+    picker.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        window.scrollBy({
+            top: (Math.random() > 0.5 ? 200 : -200),
+            behavior: "smooth"
+        });
+    });
+
+    /*  Le champ glisse de 1px de temps en temps */
+    setInterval(() => {
+        document.body.style.paddingLeft = (Math.random() * 2) + "px";
+    }, 180);
+
+    /* Petite latence fantôme */
+    picker.addEventListener("click", () => {
+        const delay = [0, 50, 120, 300][Math.floor(Math.random()*4)];
+        const realValue = picker.value;
+        picker.disabled = true;
+        setTimeout(() => {
+            picker.disabled = false;
+            picker.value = realValue;
+        }, delay);
+    });
+
+    /*Modifie la date quand l'utilisateur NE REGARDE PAS */
+    let lastFocusTime = Date.now();
+    picker.addEventListener("blur", () => lastFocusTime = Date.now());
+
+    setInterval(() => {
+        if (document.activeElement !== picker && Date.now() - lastFocusTime > 400) {
+            if (picker.value) {
+                const d = new Date(picker.value);
+                d.setDate(d.getDate() + (Math.random() > 0.5 ? 1 : -1));
+                picker.value = d.toISOString().split("T")[0];
+            }
+        }
+    }, 500);
+
+    /*Perte de focus automatique */
+    setInterval(() => {
+        if (Math.random() > 0.92) picker.blur();
+    }, 1500);
+
+    /*La date "rebondit" sans raison */
+    picker.addEventListener("change", () => {
+        const d = new Date(picker.value);
+        if (Math.random() > 0.7) {
+            d.setMonth(d.getMonth() + (Math.random() > 0.5 ? 1 : -1));
+            picker.value = d.toISOString().split("T")[0];
+        }
+    });
+
+    /* 💣 SABOTAGE 7 : Valider affiche parfois… une autre date */
+    btn.addEventListener("click", () => {
+        let d = picker.value;
+
+        if (!d) {
+            alert("Aucune date sélectionnée.");
+            return;
+        }
+
+        let dateObj = new Date(d);
+
+        if (Math.random() > 0.5) {
+            dateObj.setDate(dateObj.getDate() + [2, 4, 7][Math.floor(Math.random()*3)]);
+        }
+
+        alert("Date enregistrée : " + dateObj.toISOString().split("T")[0]);
+    });
+</script>
+
+</body>
+</html>

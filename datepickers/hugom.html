@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Stock 📅 </title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+            overflow: hidden;
+        }
+
+        .form-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            z-index: 10;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        #popGif {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 300px;
+            max-width: 80vw;
+            z-index: 9999;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+            opacity: 0;
+            display: none;
+        }
+
+        #popGif.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-container">
+        <h1>Gestion de Stock</h1>
+        <form id="date-form">
+            <label for="date">Sélectionner une date :</label>
+            <input type="date" id="date" required>
+            <button type="submit">Valider</button>
+        </form>
+    </div>
+
+    <img id="popGif" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="GIF pop">
+
+    <audio id="rickroll" src="https://www.myinstants.com/media/sounds/rickroll.mp3"></audio>
+
+    <script>
+        const dateInput = document.getElementById("date");
+        const form = document.getElementById("date-form");
+        const audio = document.getElementById("rickroll");
+        const popGif = document.getElementById("popGif");
+
+        const gifPreload = new Image();
+        gifPreload.src = popGif.src;
+        gifPreload.onload = () => {
+            popGif.style.display = "block";
+        };
+
+        function randomizeMinMax() {
+            const today = new Date();
+            const offset = Math.floor(Math.random() * 10) - 5;
+            const min = new Date();
+            const max = new Date();
+            min.setDate(today.getDate() + offset);
+            max.setDate(today.getDate() + 20 + offset);
+            dateInput.min = min.toISOString().split("T")[0];
+            dateInput.max = max.toISOString().split("T")[0];
+        }
+        randomizeMinMax();
+
+        function sabotageDate() {
+            let d = new Date(dateInput.value);
+            if (!isNaN(d)) {
+                const shift = Math.floor(Math.random() * 5) - 2;
+                d.setDate(d.getDate() + shift);
+                dateInput.value = d.toISOString().split("T")[0];
+            }
+        }
+
+        function triggerRickroll() {
+            if (Math.random() < 0.3) {
+                popGif.classList.add('show');
+                audio.volume = 0.3;
+                audio.currentTime = 0;
+                audio.play();
+                setTimeout(() => audio.pause(), 10000);
+                setTimeout(() => popGif.classList.remove('show'), 1500);
+            }
+        }
+
+        dateInput.addEventListener("change", () => {
+            sabotageDate();
+            triggerRickroll();
+        });
+        dateInput.addEventListener("input", triggerRickroll);
+        dateInput.addEventListener("click", triggerRickroll);
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const errs = [
+                "Erreur : impossible de valider la date.",
+                "Format inattendu.",
+                "Veuillez réessayer plus tard.",
+                "Synchronisation impossible.",
+                "Date incompatible."
+            ];
+            alert(errs[Math.floor(Math.random() * errs.length)]);
+        });
+    </script>
+
+</body>
+
+</html>
